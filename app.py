@@ -4,9 +4,12 @@ from datetime import datetime
 
 app = Flask(__name__)
 
+members_path = app.root_path + '/members.csv'
+trips_path = app.root_path + '/trips.csv'
+
 def get_trips():
     # reading the data 
-    with open('trips.csv', 'r', newline='', encoding='utf-8-sig') as csvfile:
+    with open(trips_path, 'r', newline='', encoding='utf-8-sig') as csvfile:
         reader = csv.DictReader(csvfile)
         # create empty list
         trips = []
@@ -21,7 +24,7 @@ def get_trips():
 
 def get_members():
     # reading the data
-    with open('members.csv', 'r', newline='', encoding='utf-8-sig') as csvfile:
+    with open(members_path, 'r', newline='', encoding='utf-8-sig') as csvfile:
         reader = csv.DictReader(csvfile)
         # create empty list
         members = []
