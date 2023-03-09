@@ -1,5 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 import csv
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -13,8 +14,10 @@ def get_trips():
             row_data = {'name': row['name'], 'start_date': row['start_date'], 'length': row['length'], 'location': row['location'], 'cost': row['cost'], 'level': row['level'], 'leader': row['leader'], 'description': row['description']}
             # appending dictionaries to list 
             trips.append(row_data)
-    # returning the list of dictionaries
-    return trips
+        # sorting trips by start date
+        sorted_trips = sorted(trips, key=lambda x: datetime.strptime(x['start_date'], '%m/%d/%y'))
+    # returning sorted list
+    return sorted_trips
 
 def get_members():
     # reading the data
@@ -26,8 +29,10 @@ def get_members():
             row_data = {'name': row['name'], 'address': row['address'], 'email': row['email'], 'date_of_birth': row['date_of_birth'], 'phone': row['phone']}
             # appending dictionaries to list
             members.append(row_data)
-    # returning list of dictionaries 
-    return members
+        # sorting members by date of birth
+        sorted_members = sorted(members, key=lambda x: datetime.strptime(x['date_of_birth'], '%m/%d/%y'))
+    # returning sorted list
+    return sorted_members
 
 @app.route('/')
 def index():

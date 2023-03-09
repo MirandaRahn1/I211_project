@@ -4,13 +4,41 @@
 
 {% block content %} 
 
-<h1>{{ trip['name'] }}</h1>
-<p>Start Date: {{ trip['start_date'] }}</p>
-<p>Trip Length: {{ trip['length'] }}</p>
-<p>Activity Level: {{ trip['level'] }}</p>
-<p>Location: {{ trip['location'] }}</p>
-<p>Cost: {{ trip['cost'] }}</p>
-<p>Trip Leader: {{ trip['leader'] }}</p>
-<p>Description: {{ trip['description'] }}</p>
+<br>
+<h1 class="mt-5">{{ trip['name'] }}</h1>
+
+<!-- from bootstrap -->
+<table class="table table-striped">
+    <tbody>
+      <tr>
+        <th scope="row">Start Date:</th>
+        <td>{{trip['start_date']}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Trip Length:</th>
+        <td>{{trip['length']}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Activity Level:</th>
+        <td>{{trip['level']}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Location:</th>
+        <td>{{trip['location']}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Cost:</th>
+        <td>{{trip['cost']}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Trip Leader:</th>
+        <td>{{trip['leader']}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Description:</th>
+        <td>{{trip['description']}}</td>
+      </tr>
+    </tbody>
+  </table>
 
 {% endblock %}

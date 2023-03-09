@@ -1,7 +1,7 @@
 name,address,email,date_of_birth,phone
-Michael Thompson,123 Main St,michael.thompson@example.com,5/10/1986,(123)456-7890
-James Hernandez,789 Oak St,james.hernandez@example.com,11/15/1989,(260)555-1234
-Emily Davis,901 Oakwood Ave,emily.davis@example.com,8/12/1990,(812)555-9876
-Sarah Nguyen,456 Elm St,sarah.nguyen@example.com,6/21/1992,(098)765-4321
-Samantha Patel,321 Maple St,samantha.patel@example.com,3/2/1994,(555)123-4567
-Daniel Kim,567 Pine St,daniel.kim@example.com,1/6/1997,(812)987-6543
+Michael Thompson,123 Main St,michael.thompson@example.com,5/10/86,(123)456-7890
+James Hernandez,789 Oak St,james.hernandez@example.com,11/15/89,(260)555-1234
+Emily Davis,901 Oakwood Ave,emily.davis@example.com,8/12/90,(812)555-9876
+Sarah Nguyen,456 Elm St,sarah.nguyen@example.com,6/21/92,(098)765-4321
+Daniel Kim,567 Pine St,daniel.kim@example.com,1/6/97,(812)987-6543
+Samantha Patel,321 Maple St,samantha.patel@example.com,3/2/94,(555)123-4567

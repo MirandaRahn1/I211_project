@@ -5,9 +5,10 @@
 
 <br>
 <h1 class="mt-5">Outdoor Adventuring Company Trips</h1>
+<hr>
 
 <!-- from bootstrap -->
-<table class="table table-striped" border="1">
+<table class="table table-striped">
     <thead>
         <tr>
         <th scope="col">Trip Name</th>
@@ -20,7 +21,10 @@
     <tbody>
     {% for trip in trips %} 
         <tr>
-        <td>{{trip['name']}}</td>
+        <td>
+            <!-- linking the trips to trip.html -->
+            <a href=" {{ url_for('trips', trip_id=trips.index(trip)) }}">{{trip['name']}}</a>
+        </td>
         <td>{{trip['start_date']}}</td>
         <td>{{trip['length']}}</td>
         <td>{{trip['location']}}</td>
