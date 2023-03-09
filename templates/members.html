@@ -1,0 +1,33 @@
+{% extends 'base.html' %} 
+{% block title %} Members {% endblock %}
+
+{% block content %} 
+ 
+<br>
+<h1 class="mt-5">Outdoor Adventuring Club Members</h1>
+
+<!-- from bootstrap -->
+<table class="table table-striped" border="1">
+    <thead>
+        <tr>
+        <th scope="col">Name</th>
+        <th scope="col">DOB</th>
+        <th scope="col">Email</th>
+        <th scope="col">Address</th>
+        <th scope="col">Phone Number</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for member in members %} 
+        <tr>
+        <td>{{member['name']}}</td>
+        <td>{{member['date_of_birth']}}</td>
+        <td>{{member['email']}}</td>
+        <td>{{member['address']}}</td>
+        <td>{{member['phone']}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

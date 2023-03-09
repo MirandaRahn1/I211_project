@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Outdoor Adventures! {% endblock %}
+
+{% block content %}
+
+<center>
+    <!-- got from bootstrap, but modified it a bit-->
+    <div class="mt-5">
+        <div class="container">
+            <!-- landscape picture -->
+            <img class="img-fluid border rounded-3 shadow-lg mt-5" src="{{ url_for('static', filename='images/landscape.jpg')  }}" alt="Mountain Landscape" width="500" height="300" loading="lazy">
+        </div>
+        <h1 class="display-4">Outdoor Adventures</h1>
+        <!-- subtitle -->
+        <p class="lead mb-4">Escape the ordinary, embrace the adventure with us!</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+            <!-- buttons  -->
+            <a class="btn btn-primary" href="{{ url_for('trips') }}" role="button">See Trips</a>
+            <a class="btn btn-primary" href="{{ url_for('members')  }}" role="button">See Members</a>
+        </div>
+    </div>
+</center>
+
+{% endblock %}

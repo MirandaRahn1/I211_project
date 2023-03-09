@@ -1,0 +1,16 @@
+{% extends 'base.html' %} 
+
+{% block title %}{{ trip['name'] }}{% endblock %} 
+
+{% block content %} 
+
+<h1>{{ trip['name'] }}</h1>
+<p>Start Date: {{ trip['start_date'] }}</p>
+<p>Trip Length: {{ trip['length'] }}</p>
+<p>Activity Level: {{ trip['level'] }}</p>
+<p>Location: {{ trip['location'] }}</p>
+<p>Cost: {{ trip['cost'] }}</p>
+<p>Trip Leader: {{ trip['leader'] }}</p>
+<p>Description: {{ trip['description'] }}</p>
+
+{% endblock %}

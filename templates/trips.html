@@ -1,0 +1,33 @@
+{% extends 'base.html' %} 
+{% block title %} Trips {% endblock %}
+
+{% block content %}
+
+<br>
+<h1 class="mt-5">Outdoor Adventuring Company Trips</h1>
+
+<!-- from bootstrap -->
+<table class="table table-striped" border="1">
+    <thead>
+        <tr>
+        <th scope="col">Trip Name</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">Trip Length</th>
+        <th scope="col">Location</th>
+        <th scope="col">Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for trip in trips %} 
+        <tr>
+        <td>{{trip['name']}}</td>
+        <td>{{trip['start_date']}}</td>
+        <td>{{trip['length']}}</td>
+        <td>{{trip['location']}}</td>
+        <td>{{trip['cost']}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %} 
