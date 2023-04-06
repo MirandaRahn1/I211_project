@@ -1,7 +1,8 @@
-name,start_date,length,location,cost,level,leader,description
-Machu Picchu Explorer,5/15/23,8 days,Machu Picchu (Peru),$2500,Intermediate,Maria Sanchez,An exploritory hike to Machu Picchu
-Rocky Mountain High Adventure,8/1/23,10 days,Rocky Mountain National Park (Colorado),$3800,Advanced,John Parker,An adventure through the Rocky Mountains
-Everest Base Camp Trek,1/1/24,14 days,Everest Base Camp (Nepal),$5500,Advanced,Tenzing Sherpa,A long quest to Everest
-Amazon Rainforest Expedition,3/15/24,7 days,Amazon Rainforest (Brazil),$3200,Intermediate,Ana Silva,An expedition through the Amazon 
-Patagonia Multi-Sport Adventure,11/1/24,12 days,Torres del Paine National Park (Chile),$6500,Advanced,Sofia Torres,An adventure full of activities in Patagonia
-Canadian Wilderness Canoe Trip,7/1/24,8 days,Algonquin Provincial Park (Canada),$2800,Beginner,David Thompson,Exploring the Canadian wilderness 
+﻿name,start_date,length,location,cost,level,leader,description
+Machu Picchu Explorer,05/15/2023,4 days,Machu Picchu (Peru),$2500,Intermediate,Maria Sanchez,An exploritory hike to Machu Picchu
+Miranda's Mountain Hike,05/27/2023,1 day,Smokey Mountains (Tennessee),$1000,beginner,Miranda,A hike through the smokey mountains
+Rocky Mountain High Adventure,08/01/2023,7 days,Rocky Mountain National Park (Colorado),$3800,Advanced,John Parker,An adventure through the Rocky Mountains
+Everest Base Camp Trek,01/01/2024,7 days,Everest Base Camp (Nepal),$3500,Advanced,Tenzing Sherpa,A long quest to Everest
+Amazon Rainforest Expedition,03/15/2024,3 days,Amazon Rainforest (Brazil),$2000,Intermediate,Ana Silva,An expedition through the Amazon 
+Canadian Wilderness Canoe Trip,07/01/2024,2 days,Algonquin Provincial Park (Canada),$1200,Beginner,David Thompson,Exploring the Canadian wilderness 
+Patagonia Multi-Sport Adventure,11/01/2024,6 days,Torres del Paine National Park (Chile),$3500,Advanced,Sofia Torres,An adventure full of activities in Patagonia

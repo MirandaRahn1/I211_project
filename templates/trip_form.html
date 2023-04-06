@@ -1,0 +1,183 @@
+{% extends 'base.html' %} 
+
+{% block title %}Create a Trip{% endblock %} 
+
+{% block content %} 
+
+{% if trip %}
+
+    <!-- Making the edit form part -->
+    <br>
+    <h1 class="mt-5">Edit {{trip['name']}}</h1>
+    <br>
+
+    <form method="POST" name="edit_trip_form">
+
+        <!-- Making it look nice with bootstrap -->
+        <div class="form-group row mb-3">
+            <label for="name" class="col-2 col-form-label"><strong>Trip Name:</strong></label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="name" name="name" value="{{trip['name']}}" required>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label for="start-date" class="col-2 col-form-label"><strong>Start Date:</strong></label>
+            <div class="col-sm-2">
+                <input type="date" class="form-control" id="start-date" name="start-date" value="{{trip['start_date']}}" required>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label for="length" class="col-2 col-form-label"><strong>Length:</strong></label>
+            <div class="col-sm-2">
+                <select class="form-select" aria-label="length" id="length" name="length" required>
+                    <!-- Making it so the info you had before is already loaded in -->
+                    <option value="1 day" {% if trip and trip['length'] == '1 day' %} selected {% endif %}>1 Day</option>
+                    <option value="2 days" {% if trip and trip['length'] == '2 days' %} selected {% endif %}>2 Days</option>
+                    <option value="3 days" {% if trip and trip['length'] == '3 days' %} selected {% endif %}>3 Days</option>
+                    <option value="4 days" {% if trip and trip['length'] == '4 days' %} selected {% endif %}>4 Days</option>
+                    <option value="5 days" {% if trip and trip['length'] == '5 days' %} selected {% endif %}>5 Days</option>
+                    <option value="6 days" {% if trip and trip['length'] == '6 days' %} selected {% endif %}>6 Days</option>
+                    <option value="7 days" {% if trip and trip['length'] == '7 days' %} selected {% endif %}>7 Days</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label for="location" class="col-2 col-form-label"><strong>Location:</strong></label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="location" name="location" value="{{trip['location']}}" required>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label for="cost" class="col-2 col-form-label"><strong>Cost:</strong></label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="cost" name="cost" value="{{trip['cost']}}" required>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label for="level" class="col-2 col-form-label"><strong>Level:</strong></label>
+            <div class="col-sm-5">
+                <select class="form-select" aria-label="level" id="level" name="level" required>
+                    <!-- Making it so the info you had before is already loaded in -->
+                    <option value="beginner" {% if trip and trip['level'] == 'Beginner' %} selected {% endif %} >Beginner</option>
+                    <option value="intermediate" {% if trip and trip['level'] == 'Intermediate' %} selected {% endif %} >Intermediate</option>
+                    <option value="advanced" {% if trip and trip['level'] == 'Advanced' %} selected {% endif %} >Advanced</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label for="leader" class="col-2 col-form-label"><strong>Leader:</strong></label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="leader" name="leader" value="{{trip['leader']}}" required>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label for="description" class="col-2 col-form-label"><strong>Description:</strong></label>
+            <div class="col-sm-5">
+                <textarea class="form-control" type="textarea" rows="5" cols="20" name="description" required>{{trip['description']}}</textarea>
+            </div>
+        </div>
+
+        <!-- Submit and reset buttons -->
+        <div>
+            <button class="btn btn-secondary" type="reset" value="Reset">Reset</button>
+            <button class="btn btn-primary" type="submit" value="Submit">Submit</button>
+        </div>
+    </form>
+
+{% else %} 
+
+    <!-- Adding a new trip form  -->
+    <br>
+    <h1 class="mt-5">Add a New Trip</h1>
+    <br>
+
+    <form method="POST" name="add_trip_form">
+
+        <!-- From bootstrap -->
+        <div class="form-group row mb-3">
+            <label for="name" class="col-2 col-form-label"><strong>Trip Name:</strong></label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label for="start-date" class="col-2 col-form-label"><strong>Start Date:</strong></label>
+            <div class="col-sm-2">
+                <input type="date" class="form-control" id="start-date" name="start-date" required>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label for="length" class="col-2 col-form-label"><strong>Length:</strong></label>
+            <div class="col-sm-2">
+                <!-- Making drop down -->
+                <select class="form-select" aria-label="length" id="length" name="length" required>
+                    <option value="1 day">1 Day</option>
+                    <option value="2 days">2 Days</option>
+                    <option value="3 days">3 Days</option>
+                    <option value="4 days">4 Days</option>
+                    <option value="5 days">5 Days</option>
+                    <option value="6 days">6 Days</option>
+                    <option value="7 days">7 Days</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label for="location" class="col-2 col-form-label"><strong>Location:</strong></label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="location" name="location" required>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label for="cost" class="col-2 col-form-label"><strong>Cost:</strong></label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="cost" name="cost" required>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label for="level" class="col-2 col-form-label"><strong>Level:</strong></label>
+            <div class="col-sm-2">
+                <select class="form-select" aria-label="level" id="level" name="level" required>
+                    <!-- Making dropdown -->
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label for="leader" class="col-2 col-form-label"><strong>Leader:</strong></label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="leader" name="leader" required>
+            </div>
+        </div>
+
+        <div class="form-group row mb-3">
+            <label for="description" class="col-2 col-form-label"><strong>Description:</strong></label>
+            <div class="col-sm-5">
+                <textarea class="form-control" type="textarea" rows="5" cols="20" name="description" required></textarea>
+            </div>
+        </div>
+
+        <!-- Submit and reset buttons -->
+        <div>
+            <button class="btn btn-secondary" type="reset" value="Reset">Reset</button>
+            <button class="btn btn-primary" type="submit" value="Submit">Submit</button>
+        </div>
+    </form>
+
+{% endif %} 
+
+{% endblock %}

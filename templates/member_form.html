@@ -1,0 +1,58 @@
+{% extends 'base.html' %} 
+
+{% block title %}Add Members{% endblock %} 
+
+{% block content %} 
+
+<!-- Creates a new member form -->
+<br>
+<h1 class="mt-5">Add a New Member</h1>
+<br>
+
+<form method="POST" name="add_member_form">
+
+    <!-- Making the form look nice with bootstrap -->
+    <div class="form-group row mb-3">
+        <label for="name" class="col-2 col-form-label"><strong>Name:</strong></label>
+        <div class="col-sm-5">
+            <input type="name" class="form-control" id="name" name="name" required>
+        </div>
+    </div>
+
+    <div class="form-group row mb-3">
+        <label for="address" class="col-2 col-form-label"><strong>Address:</strong></label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="address" name="address" required>
+        </div>
+    </div>
+
+    <div class="form-group row mb-3">
+        <label for="email" class="col-2 col-form-label"><strong>Email:</strong></label>
+        <div class="col-sm-5">
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+    </div>
+
+    <div class="form-group row mb-3">
+        <label for="date-of-birth" class="col-2 col-form-label"><strong>DOB:</strong></label>
+        <div class="col-sm-2">
+            <input type="date" class="form-control" id="date-of-birth" name="date-of-birth" required>
+        </div>
+    </div>
+
+    <div class="form-group row mb-3">
+        <label for="phone" class="col-2 col-form-label"><strong>Phone Number:</strong></label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="phone" name="phone" required>
+        </div>
+    </div>
+
+    <!-- Reset and submit buttons -->
+    <div>
+        <button class="btn btn-secondary" type="reset" value="Reset">Reset</button>
+        <button class="btn btn-primary" type="submit" value="Submit">Submit</button>
+    </div>
+
+</form>
+
+{% endblock %}
