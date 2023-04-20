@@ -23,7 +23,7 @@
         <tr>
         <td>
             <!-- linking the trips to trip.html -->
-            <a href=" {{ url_for('trips', trip_id=trips.index(trip)) }}">{{trip['name']}}</a>
+            <a href=" {{ url_for('trips', trip_id=trip['trip_id']) }}">{{trip['name']}}</a>
         </td>
         <td>{{trip['start_date']}}</td>
         <td>{{trip['length']}}</td>

@@ -63,9 +63,9 @@
             <div class="col-sm-5">
                 <select class="form-select" aria-label="level" id="level" name="level" required>
                     <!-- Making it so the info you had before is already loaded in -->
-                    <option value="beginner" {% if trip and trip['level'] == 'Beginner' %} selected {% endif %} >Beginner</option>
-                    <option value="intermediate" {% if trip and trip['level'] == 'Intermediate' %} selected {% endif %} >Intermediate</option>
-                    <option value="advanced" {% if trip and trip['level'] == 'Advanced' %} selected {% endif %} >Advanced</option>
+                    <option value="Beginner" {% if trip and trip['level'] == 'Beginner' %} selected {% endif %} >Beginner</option>
+                    <option value="Intermediate" {% if trip and trip['level'] == 'Intermediate' %} selected {% endif %} >Intermediate</option>
+                    <option value="Advanced" {% if trip and trip['level'] == 'Advanced' %} selected {% endif %} >Advanced</option>
                 </select>
             </div>
         </div>

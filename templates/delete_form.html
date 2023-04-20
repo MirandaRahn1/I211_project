@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete trip{% endblock %}
+
+{% block content %}
+<br>
+<h1 class="text-danger mt-5">Delete trip: {{ trip['name'] }}</h1>
+
+<table class="table table-striped">
+    <tbody>
+      <tr>
+        <th scope="row">Start Date:</th>
+        <td>{{trip['start_date']}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Trip Length:</th>
+        <td>{{trip['length']}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Activity Level:</th>
+        <td>{{trip['level']}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Location:</th>
+        <td>{{trip['location']}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Cost:</th>
+        <td>{{trip['cost']}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Trip Leader:</th>
+        <td>{{trip['leader']}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Description:</th>
+        <td>{{trip['description']}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+<a href="{{ url_for('trips', trip_id=trip_id) }}" class="btn btn-primary">Back to trip Details</a>
+<a href="{{ url_for('delete_trip', trip_id=trip_id, delete='1') }}" class="btn btn-danger">Really Delete This trip</a>
+
+{% endblock %}

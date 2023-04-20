@@ -18,7 +18,7 @@ def get_connection():
 # WORKING
 # return a list of dictionaries representing all of the trips data 
 def get_trips():
-    sql = "select * from trips"
+    sql = "select trip_id, name, DATE_FORMAT(start_date, '%c/%d/%Y') as start_date, length, location, cost, level, leader, description from trips order by STR_TO_DATE(start_date, '%Y-%c-%d')"
     conn = get_connection()
     with conn:
         with conn.cursor() as cursor:
@@ -28,7 +28,7 @@ def get_trips():
 # WORKING
 # takes a trip_id, returns a single dictionary containing the data for the trip with that id
 def get_trip(trip_id):
-    sql = "select * from trips where trip_id = %s"
+    sql = "select trip_id, name, DATE_FORMAT(start_date, '%%c/%%d/%%Y') as start_date, length, location, cost, level, leader, description from trips where trip_id = %s"
     conn = get_connection()
     with conn:
         with conn.cursor() as cursor:
@@ -68,7 +68,7 @@ def add_member(fname, lname, address, email, dob, phone):
 # WORKING 
 # returns a list of dictionaries representing all of the member data   
 def get_members():
-    sql = "select * from members"
+    sql = "select member_id, fname, lname, address, email, DATE_FORMAT(dob, '%c/%d/%Y') as dob, phone from members order by STR_TO_DATE(dob, '%Y-%c-%d')"
     conn = get_connection()
     with conn:
         with conn.cursor() as cursor:

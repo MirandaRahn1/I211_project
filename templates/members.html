@@ -11,7 +11,8 @@
 <table class="table table-striped">
     <thead>
         <tr>
-        <th scope="col">Name</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
         <th scope="col">DOB</th>
         <th scope="col">Email</th>
         <th scope="col">Address</th>
@@ -21,8 +22,9 @@
     <tbody>
     {% for member in members %} 
         <tr>
-        <td>{{member['name']}}</td>
-        <td>{{member['date_of_birth']}}</td>
+        <td>{{member['fname']}}</td>
+        <td>{{member['lname']}}</td>
+        <td>{{member['dob']}}</td>
         <td>{{member['email']}}</td>
         <td>{{member['address']}}</td>
         <td>{{member['phone']}}</td>
