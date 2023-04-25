@@ -101,7 +101,7 @@ def add_member():
         in_lname = html.escape(request.form['lname'])
         in_address = html.escape(request.form['address'])
         in_email = html.escape(request.form['email'])
-        in_dob = html.esacpe(request.form['dob'])
+        in_dob = html.escape(request.form['dob'])
         # getting dob to format correctly
         # in_date_of_birth = datetime.strptime(in_date_of_birth,'%Y-%m-%d')
         # in_format_date = in_date_of_birth.strftime('%m/%d/%Y')
@@ -138,6 +138,7 @@ def add_trip():
         in_level = html.escape(request.form['level'])
         in_leader = html.escape(request.form['leader'])
         in_description = html.escape(request.form['description'])
+
         error = check_trip(in_name, in_start_date, in_length, in_location, in_cost, in_level, in_leader, in_description)
         if error:
             return render_template('trip_form.html', error=error, name=in_name, start_date=in_start_date, length=in_length, location=in_location, cost=in_cost, level=in_level, leader=in_leader, description=in_description, trips=trips)
