@@ -125,13 +125,13 @@
             <div class="col-sm-2">
                 <!-- Making drop down -->
                 <select class="form-select" aria-label="length" id="length" name="length" value="{{trip['length']}}">
-                    <option value="1 day">{{length}}</option>
-                    <option value="2 days">{{length}}</option>
-                    <option value="3 days">{{length}}</option>
-                    <option value="4 days">{{length}}</option>
-                    <option value="5 days">{{length}}</option>
-                    <option value="6 days">{{length}}</option>
-                    <option value="7 days">{{length}}</option>
+                    <option value="{{trip['length']}}">1 Day</option>
+                    <option value="{{trip['length']}}">2 Days</option>
+                    <option value="{{trip['length']}}">3 Days</option>
+                    <option value="{{trip['length']}}">4 Days</option>
+                    <option value="{{trip['length']}}">5 Days</option>
+                    <option value="{{trip['length']}}">6 Days</option>
+                    <option value="{{trip['length']}}">7 Days</option>
                 </select>
             </div>
         </div>
@@ -155,9 +155,9 @@
             <div class="col-sm-2">
                 <select class="form-select" aria-label="level" id="level" name="level" value="{{trip['level']}}">
                     <!-- Making dropdown -->
-                    <option value="beginner">{{level}}</option>
-                    <option value="intermediate">{{level}}</option>
-                    <option value="advanced">{{level}}</option>
+                    <option value="{{trip['level']}}">Beginner</option>
+                    <option value="{{trip['level']}}">Intermediate</option>
+                    <option value="{{trip['level']}}">Advanced</option>
                 </select>
             </div>
         </div>
