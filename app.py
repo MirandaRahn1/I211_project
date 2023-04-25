@@ -141,7 +141,7 @@ def add_trip():
 
         error = check_trip(in_name, in_start_date, in_length, in_location, in_cost, in_level, in_leader, in_description)
         if error:
-            return render_template('trip_form.html', error=error, name=in_name, start_date=in_start_date, length=in_length, location=in_location, cost=in_cost, level=in_level, leader=in_leader, description=in_description, trips=trips)
+            return render_template('trip_form.html', error=error, trip={'name':in_name, 'start_date':in_start_date, 'length':in_length, 'location':in_location, 'cost':in_cost, 'level':in_level, 'leader':in_leader, 'description':in_description})
 
         # new trip dictionary
         # new_trip = {'name':in_name, 'start_date':in_format_date, 'length':in_length, 'location':in_location, 'cost':in_cost, 'level':in_level, 'leader':in_leader, 'description':in_description}
@@ -152,7 +152,8 @@ def add_trip():
 
         return redirect(url_for('trips'))
     else:
-        return render_template('trip_form.html')
+        
+        return render_template('trip_form.html', trip={})
     
 # edit trip route
 @app.route('/trips/<trip_id>/edit', methods = ['GET', 'POST'])
@@ -171,7 +172,7 @@ def edit_trip(trip_id=None):
 
         error = check_trip(in_name, in_start_date, in_length, in_location, in_cost, in_level, in_leader, in_description)
         if error:
-            return render_template('trip_form.html', error=error, trip={'name':in_name, 'start_date':in_start_date, 'length':in_length, 'location':in_location, 'cost':in_cost, 'level':in_level, 'leader':in_leader, 'description':in_description})
+            return render_template('trip_form.html', error=error, trip_id=trip_id, trip={'name':in_name, 'start_date':in_start_date, 'length':in_length, 'location':in_location, 'cost':in_cost, 'level':in_level, 'leader':in_leader, 'description':in_description})
 
         # new new trip dictionary 
         # new_trip = {'name':in_name, 'start_date':in_format_date, 'length':in_length, 'location':in_location, 'cost':in_cost, 'level':in_level, 'leader':in_leader, 'description':in_description}
@@ -190,7 +191,7 @@ def edit_trip(trip_id=None):
         # # getting the date to load in when you edit a trip
         trip['start_date'] = datetime.strptime(trip['start_date'],'%m/%d/%Y')
         trip['start_date'] = trip['start_date'].strftime('%Y-%m-%d')
-        return render_template('trip_form.html',trip = trip)
+        return render_template('trip_form.html', trip=trip, trip_id=trip_id)
     
 # delete trip route 
 @app.route('/trip/<trip_id>/delete', methods=['GET', "POST"])
