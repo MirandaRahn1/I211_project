@@ -4,6 +4,11 @@
 
 {% block content %} 
 
+{% if error %} 
+<br>
+<h5 class='mt-5' style="color: red;">{{ error }}</h5>
+{% endif %}
+
 {% if trip %}
 
     <!-- Making the edit form part -->
@@ -17,21 +22,21 @@
         <div class="form-group row mb-3">
             <label for="name" class="col-2 col-form-label"><strong>Trip Name:</strong></label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" id="name" name="name" value="{{trip['name']}}" required>
+                <input type="text" class="form-control" id="name" name="name" value="{{trip['name']}}">
             </div>
         </div>
 
         <div class="form-group row mb-3">
             <label for="start-date" class="col-2 col-form-label"><strong>Start Date:</strong></label>
             <div class="col-sm-2">
-                <input type="date" class="form-control" id="start-date" name="start-date" value="{{trip['start_date']}}" required>
+                <input type="date" class="form-control" id="start-date" name="start-date" value="{{trip['start_date']}}">
             </div>
         </div>
 
         <div class="form-group row mb-3">
             <label for="length" class="col-2 col-form-label"><strong>Length:</strong></label>
             <div class="col-sm-2">
-                <select class="form-select" aria-label="length" id="length" name="length" required>
+                <select class="form-select" aria-label="length" id="length" name="length">
                     <!-- Making it so the info you had before is already loaded in -->
                     <option value="1 day" {% if trip and trip['length'] == '1 day' %} selected {% endif %}>1 Day</option>
                     <option value="2 days" {% if trip and trip['length'] == '2 days' %} selected {% endif %}>2 Days</option>
@@ -47,21 +52,21 @@
         <div class="form-group row mb-3">
             <label for="location" class="col-2 col-form-label"><strong>Location:</strong></label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" id="location" name="location" value="{{trip['location']}}" required>
+                <input type="text" class="form-control" id="location" name="location" value="{{trip['location']}}">
             </div>
         </div>
 
         <div class="form-group row mb-3">
             <label for="cost" class="col-2 col-form-label"><strong>Cost:</strong></label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" id="cost" name="cost" value="{{trip['cost']}}" required>
+                <input type="text" class="form-control" id="cost" name="cost" value="{{trip['cost']}}">
             </div>
         </div>
 
         <div class="form-group row mb-3">
             <label for="level" class="col-2 col-form-label"><strong>Level:</strong></label>
             <div class="col-sm-5">
-                <select class="form-select" aria-label="level" id="level" name="level" required>
+                <select class="form-select" aria-label="level" id="level" name="level">
                     <!-- Making it so the info you had before is already loaded in -->
                     <option value="Beginner" {% if trip and trip['level'] == 'Beginner' %} selected {% endif %} >Beginner</option>
                     <option value="Intermediate" {% if trip and trip['level'] == 'Intermediate' %} selected {% endif %} >Intermediate</option>
@@ -73,14 +78,14 @@
         <div class="form-group row mb-3">
             <label for="leader" class="col-2 col-form-label"><strong>Leader:</strong></label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" id="leader" name="leader" value="{{trip['leader']}}" required>
+                <input type="text" class="form-control" id="leader" name="leader" value="{{trip['leader']}}">
             </div>
         </div>
 
         <div class="form-group row mb-3">
             <label for="description" class="col-2 col-form-label"><strong>Description:</strong></label>
             <div class="col-sm-5">
-                <textarea class="form-control" type="textarea" rows="5" cols="20" name="description" required>{{trip['description']}}</textarea>
+                <textarea class="form-control" type="textarea" rows="5" cols="20" name="description">{{trip['description']}}</textarea>
             </div>
         </div>
 
@@ -104,14 +109,14 @@
         <div class="form-group row mb-3">
             <label for="name" class="col-2 col-form-label"><strong>Trip Name:</strong></label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" id="name" name="name" required>
+                <input type="text" class="form-control" id="name" name="name" value="{{trip['name']}}">
             </div>
         </div>
 
         <div class="form-group row mb-3">
             <label for="start-date" class="col-2 col-form-label"><strong>Start Date:</strong></label>
             <div class="col-sm-2">
-                <input type="date" class="form-control" id="start-date" name="start-date" required>
+                <input type="date" class="form-control" id="start-date" name="start-date" value="{{trip['start_date']}}">
             </div>
         </div>
 
@@ -119,14 +124,14 @@
             <label for="length" class="col-2 col-form-label"><strong>Length:</strong></label>
             <div class="col-sm-2">
                 <!-- Making drop down -->
-                <select class="form-select" aria-label="length" id="length" name="length" required>
-                    <option value="1 day">1 Day</option>
-                    <option value="2 days">2 Days</option>
-                    <option value="3 days">3 Days</option>
-                    <option value="4 days">4 Days</option>
-                    <option value="5 days">5 Days</option>
-                    <option value="6 days">6 Days</option>
-                    <option value="7 days">7 Days</option>
+                <select class="form-select" aria-label="length" id="length" name="length" value="{{trip['length']}}">
+                    <option value="1 day">{{length}}</option>
+                    <option value="2 days">{{length}}</option>
+                    <option value="3 days">{{length}}</option>
+                    <option value="4 days">{{length}}</option>
+                    <option value="5 days">{{length}}</option>
+                    <option value="6 days">{{length}}</option>
+                    <option value="7 days">{{length}}</option>
                 </select>
             </div>
         </div>
@@ -134,25 +139,25 @@
         <div class="form-group row mb-3">
             <label for="location" class="col-2 col-form-label"><strong>Location:</strong></label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" id="location" name="location" required>
+                <input type="text" class="form-control" id="location" name="location" value="{{trip['location']}}">
             </div>
         </div>
 
         <div class="form-group row mb-3">
             <label for="cost" class="col-2 col-form-label"><strong>Cost:</strong></label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" id="cost" name="cost" required>
+                <input type="text" class="form-control" id="cost" name="cost" value="{{trip['cost']}}">
             </div>
         </div>
 
         <div class="form-group row mb-3">
             <label for="level" class="col-2 col-form-label"><strong>Level:</strong></label>
             <div class="col-sm-2">
-                <select class="form-select" aria-label="level" id="level" name="level" required>
+                <select class="form-select" aria-label="level" id="level" name="level" value="{{trip['level']}}">
                     <!-- Making dropdown -->
-                    <option value="beginner">Beginner</option>
-                    <option value="intermediate">Intermediate</option>
-                    <option value="advanced">Advanced</option>
+                    <option value="beginner">{{level}}</option>
+                    <option value="intermediate">{{level}}</option>
+                    <option value="advanced">{{level}}</option>
                 </select>
             </div>
         </div>
@@ -160,14 +165,14 @@
         <div class="form-group row mb-3">
             <label for="leader" class="col-2 col-form-label"><strong>Leader:</strong></label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" id="leader" name="leader" required>
+                <input type="text" class="form-control" id="leader" name="leader" value="{{trip['leader']}}">
             </div>
         </div>
 
         <div class="form-group row mb-3">
             <label for="description" class="col-2 col-form-label"><strong>Description:</strong></label>
             <div class="col-sm-5">
-                <textarea class="form-control" type="textarea" rows="5" cols="20" name="description" required></textarea>
+                <textarea class="form-control" type="textarea" rows="5" cols="20" name="description">{{trip['description']}}</textarea>
             </div>
         </div>
 

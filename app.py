@@ -1,7 +1,9 @@
 from flask import Flask, render_template, url_for, request, redirect
 # import csv
-# from datetime import datetime
+from datetime import datetime, date
 from os.path import exists 
+import re
+import html 
 
 
 app = Flask(__name__)
@@ -95,15 +97,19 @@ def trips(trip_id=None):
 @app.route('/members/add/', methods = ['GET', 'POST'])
 def add_member():
     if request.method == 'POST':
-        in_fname = request.form['fname']
-        in_lname = request.form['lname']
-        in_address = request.form['address']
-        in_email = request.form['email']
-        in_dob = request.form['dob']
+        in_fname = html.escape(request.form['fname'])
+        in_lname = html.escape(request.form['lname'])
+        in_address = html.escape(request.form['address'])
+        in_email = html.escape(request.form['email'])
+        in_dob = html.esacpe(request.form['dob'])
         # getting dob to format correctly
         # in_date_of_birth = datetime.strptime(in_date_of_birth,'%Y-%m-%d')
         # in_format_date = in_date_of_birth.strftime('%m/%d/%Y')
         in_phone = request.form['phone']
+
+        error = check_member(in_fname, in_lname, in_address, in_email, in_dob, in_phone)
+        if error:
+            return render_template('member_form.html', error=error, fname=in_fname, lname=in_lname, address=in_address, email=in_email, dob=in_dob, phone=in_phone, members=members)
 
         # new member disctionary
         # new_member = {'name':in_name, 'address':in_address, 'email':in_email, 'date_of_birth':in_format_date, 'phone':in_phone}
@@ -121,17 +127,20 @@ def add_member():
 @app.route('/trips/create/', methods = ['GET', 'POST'])
 def add_trip():
     if request.method == 'POST':
-        in_name = request.form['name']
-        in_start_date = request.form['start-date']
+        in_name = html.escape(request.form['name'])
+        in_start_date = html.escape(request.form['start-date'])
         # getting date to format correctly
         # in_start_date = datetime.strptime(in_start_date,'%Y-%m-%d')
         # in_format_date = in_start_date.strftime('%m/%d/%Y')
-        in_length = request.form['length']
-        in_location = request.form['location']
-        in_cost = request.form['cost']
-        in_level = request.form['level']
-        in_leader = request.form['leader']
-        in_description = request.form['description']
+        in_length = html.escape(request.form['length'])
+        in_location = html.escape(request.form['location'])
+        in_cost = html.escape(request.form['cost'])
+        in_level = html.escape(request.form['level'])
+        in_leader = html.escape(request.form['leader'])
+        in_description = html.escape(request.form['description'])
+        error = check_trip(in_name, in_start_date, in_length, in_location, in_cost, in_level, in_leader, in_description)
+        if error:
+            return render_template('trip_form.html', error=error, name=in_name, start_date=in_start_date, length=in_length, location=in_location, cost=in_cost, level=in_level, leader=in_leader, description=in_description, trips=trips)
 
         # new trip dictionary
         # new_trip = {'name':in_name, 'start_date':in_format_date, 'length':in_length, 'location':in_location, 'cost':in_cost, 'level':in_level, 'leader':in_leader, 'description':in_description}
@@ -148,16 +157,20 @@ def add_trip():
 @app.route('/trips/<trip_id>/edit', methods = ['GET', 'POST'])
 def edit_trip(trip_id=None):
     if request.method == 'POST':
-        in_name = request.form['name']
-        in_start_date = request.form['start-date']
+        in_name = html.escape(request.form['name'])
+        in_start_date = html.escape(request.form['start-date'])
         # in_start_date = datetime.strptime(in_start_date,'%Y-%m-%d')
         # in_format_date = in_start_date.strftime('%m/%d/%Y')
-        in_length = request.form['length']
-        in_location = request.form['location']
-        in_cost = request.form['cost']
-        in_level = request.form['level']
-        in_leader = request.form['leader']
-        in_description = request.form['description']
+        in_length = html.escape(request.form['length'])
+        in_location = html.escape(request.form['location'])
+        in_cost = html.escape(request.form['cost'])
+        in_level = html.escape(request.form['level'])
+        in_leader = html.escape(request.form['leader'])
+        in_description = html.escape(request.form['description'])
+
+        error = check_trip(in_name, in_start_date, in_length, in_location, in_cost, in_level, in_leader, in_description)
+        if error:
+            return render_template('trip_form.html', error=error, trip={'name':in_name, 'start_date':in_start_date, 'length':in_length, 'location':in_location, 'cost':in_cost, 'level':in_level, 'leader':in_leader, 'description':in_description})
 
         # new new trip dictionary 
         # new_trip = {'name':in_name, 'start_date':in_format_date, 'length':in_length, 'location':in_location, 'cost':in_cost, 'level':in_level, 'leader':in_leader, 'description':in_description}
@@ -172,21 +185,93 @@ def edit_trip(trip_id=None):
         trip = database.get_trip(trip_id)
         # trips = get_trips()
         # trip=trips[int(trip_id)]
+
         # # getting the date to load in when you edit a trip
-        # trip['start_date'] = datetime.strptime(trip['start_date'],'%m/%d/%Y')
-        # trip['start_date'] = trip['start_date'].strftime('%Y-%m-%d')
-        return render_template('trip_form.html',trip = trip )
+        trip['start_date'] = datetime.strptime(trip['start_date'],'%m/%d/%Y')
+        trip['start_date'] = trip['start_date'].strftime('%Y-%m-%d')
+        return render_template('trip_form.html',trip = trip)
     
 # delete trip route 
 @app.route('/trip/<trip_id>/delete', methods=['GET', "POST"])
 def delete_trip(trip_id=None):
-    trip_id = int(trip_id)
+    #trip_id = int(trip_id)
     delete=request.args.get('delete', None)
     trips=database.get_trips()
     trip=database.get_trip(trip_id)
     if delete == trip:
-        del trip
-        # database.get_trip(trip_id)
+        #del trip
+        database.delete_trip(trip_id)
         return redirect(url_for('trips', trip=trips))
     else:
         return render_template('delete_form.html', trip_id=trip_id, trip=trip)
+
+# function to validate trip form 
+def check_trip(name, start_date, length, location, cost, level, leader, description):
+    error = ""
+    msg = []
+    if not name:
+        msg.append("Name is missing.")
+    if len(name) > 50:
+        msg.append("Name is too long.")
+    if not start_date or (datetime.strptime(start_date, '%Y-%m-%d').date() < date.today()):
+        msg.append("Start date is missing or invalid.")
+    if not length:
+        msg.append("Length is missing.")
+    if len(length) > 20:
+        msg.append("Length is too long.")
+    if not location:
+        msg.append("Location is missing.")
+    if len(location) > 50:
+        msg.append("Location is too long.")
+    if not cost or cost=='$':
+        msg.append("Cost is missing.")
+    if '$' not in cost:
+        msg.append("Please add '$' in front of cost.")
+    if len(cost) > 25:
+        msg.append("Cost is too long.")
+    if not level:
+        msg.append("Level is missing.")
+    if len(level) > 20:
+        msg.append("Level is too long.")
+    if not leader:
+        msg.append("Leader is missing.")
+    if len(leader) > 25:
+        msg.append("Leader is too long.")
+    if not description:
+        msg.append("Description is missing.")
+    if len(description) > 200:
+        msg.append("Description is too long.")
+    if len(msg) > 0:
+        error = " \n".join(msg)
+    return error 
+
+# function to validate member form
+def check_member(fname, lname, address, email, dob, phone):
+    error = ""
+    msg = []
+    if not fname:
+        msg.append("First name is missing.")
+    if len(fname) > 15:
+        msg.append("First name is too long.")
+    if not lname:
+        msg.append("Last name is missing.")
+    if len(lname) > 15:
+        msg.append("Last name is too long.")
+    if not address:
+        msg.append("Address is missing.")
+    if len(address) > 100:
+        msg.append("Address is too long.") 
+    if not email:
+        msg.append("Email is missing.")
+    if len(email) > 50:
+        msg.append("Email is too long.")
+    if not dob or (datetime.strptime(dob, '%Y-%m-%d').date() > date.today()):
+        msg.append("DOB is missing or invalid.")
+    if not phone:
+        msg.append("Phone number is missing.")
+    if not re.match(r"\(\d{3}\)\d{3}-\d{4}", phone):
+        msg.append("Phone number does not match (000)000-0000 format.")
+    if len(msg) > 0:
+        error = " \n".join(msg)
+    return error 
+

@@ -18,7 +18,7 @@ def get_connection():
 # WORKING
 # return a list of dictionaries representing all of the trips data 
 def get_trips():
-    sql = "select trip_id, name, DATE_FORMAT(start_date, '%c/%d/%Y') as start_date, length, location, cost, level, leader, description from trips order by STR_TO_DATE(start_date, '%Y-%c-%d')"
+    sql = "select trip_id, name, DATE_FORMAT(start_date, '%c/%e/%Y') as start_date, length, location, cost, level, leader, description from trips order by STR_TO_DATE(start_date, '%Y-%c-%d')"
     conn = get_connection()
     with conn:
         with conn.cursor() as cursor:
@@ -28,7 +28,7 @@ def get_trips():
 # WORKING
 # takes a trip_id, returns a single dictionary containing the data for the trip with that id
 def get_trip(trip_id):
-    sql = "select trip_id, name, DATE_FORMAT(start_date, '%%c/%%d/%%Y') as start_date, length, location, cost, level, leader, description from trips where trip_id = %s"
+    sql = "select trip_id, name, DATE_FORMAT(start_date, '%%c/%%e/%%Y') as start_date, length, location, cost, level, leader, description from trips where trip_id = %s"
     conn = get_connection()
     with conn:
         with conn.cursor() as cursor:
@@ -68,7 +68,7 @@ def add_member(fname, lname, address, email, dob, phone):
 # WORKING 
 # returns a list of dictionaries representing all of the member data   
 def get_members():
-    sql = "select member_id, fname, lname, address, email, DATE_FORMAT(dob, '%c/%d/%Y') as dob, phone from members order by STR_TO_DATE(dob, '%Y-%c-%d')"
+    sql = "select member_id, fname, lname, address, email, DATE_FORMAT(dob, '%c/%e/%Y') as dob, phone from members order by STR_TO_DATE(dob, '%Y-%c-%d')"
     conn = get_connection()
     with conn:
         with conn.cursor() as cursor:
@@ -94,10 +94,19 @@ def delete_member(member_id):
         with conn.cursor() as cursor:
             cursor.execute(sql, (member_id))
             return cursor.fetchall()
-
+        
+# WORKING
+def delete_trip(trip_id): 
+    sql = "delete from trips where trip_id = %s"
+    conn = get_connection()
+    with conn:
+        with conn.cursor() as cursor:
+            cursor.execute(sql, (trip_id))
+            return cursor.fetchall()
+        
 # WORKING 
 # Takes as input a trip_id and a member_id and inserts the appropriate data into the database that indicates the member with member_id as a primary key is attending the trip with the trip_id as a primary key
-def add_member_trip(trip_id, member_id): # need to test
+def add_member_trip(trip_id, member_id): 
     sql = "insert into member_trip (trip_id, member_id) values (%s, %s)"
     conn = get_connection()
     with conn:
@@ -154,6 +163,9 @@ if __name__ == '__main__':
         print(f"All members attending the trip with trip_id 1: {get_attendees(1)}\n")
         remove_member_trip(1, 4)
         print(f"All members attending the trip with trip_id 1 after removing: {get_attendees(1)}")
+
+        # delete_trip(8)
+        # print(f'All trips: {get_trips()}\n')
 
     except Exception as e:
         print(e)

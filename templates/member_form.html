@@ -4,6 +4,11 @@
 
 {% block content %} 
 
+{% if error %} 
+<br>
+<h5 class='mt-5' style="color: red;">{{ error }}</h5>
+{% endif %}
+
 <!-- Creates a new member form -->
 <br>
 <h1 class="mt-5">Add a New Member</h1>
@@ -15,42 +20,42 @@
     <div class="form-group row mb-3">
         <label for="fname" class="col-2 col-form-label"><strong>First Name:</strong></label>
         <div class="col-sm-5">
-            <input type="name" class="form-control" id="fname" name="fname" required>
+            <input type="name" class="form-control" id="fname" name="fname" value="{{fname}}">
         </div>
     </div>
 
     <div class="form-group row mb-3">
         <label for="lname" class="col-2 col-form-label"><strong>Last Name:</strong></label>
         <div class="col-sm-5">
-            <input type="name" class="form-control" id="lname" name="lname" required>
+            <input type="name" class="form-control" id="lname" name="lname" value="{{lname}}">
         </div>
     </div>
 
     <div class="form-group row mb-3">
         <label for="address" class="col-2 col-form-label"><strong>Address:</strong></label>
         <div class="col-sm-5">
-            <input type="text" class="form-control" id="address" name="address" required>
+            <input type="text" class="form-control" id="address" name="address" value="{{address}}">
         </div>
     </div>
 
     <div class="form-group row mb-3">
         <label for="email" class="col-2 col-form-label"><strong>Email:</strong></label>
         <div class="col-sm-5">
-            <input type="email" class="form-control" id="email" name="email" required>
+            <input type="email" class="form-control" id="email" name="email" value="{{email}}">
         </div>
     </div>
 
     <div class="form-group row mb-3">
         <label for="dob" class="col-2 col-form-label"><strong>DOB:</strong></label>
         <div class="col-sm-2">
-            <input type="date" class="form-control" id="dob" name="dob" required>
+            <input type="date" class="form-control" id="dob" name="dob" value="{{dob}}">
         </div>
     </div>
 
     <div class="form-group row mb-3">
         <label for="phone" class="col-2 col-form-label"><strong>Phone Number:</strong></label>
         <div class="col-sm-5">
-            <input type="text" class="form-control" id="phone" name="phone" required>
+            <input type="text" class="form-control" id="phone" name="phone" value="{{phone}}">
         </div>
     </div>
 

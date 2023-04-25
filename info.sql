@@ -50,7 +50,7 @@ INSERT INTO members (fname, lname, address, email, dob, phone) VALUES
 --inserting values into trips
 INSERT INTO trips (name, start_date, length, location, cost, level, leader, description) VALUES
 ('Machu Picchu Explorer', '2023-05-15', '4 days', 'Machu Picchu (Peru)', '$2500', 'Intermediate', 'Maria Sanchez', 'An exploritory hike to Machu Picchu'),
-('Mirandas Mountain Hike', '2023-05-27', '1 day', 'Smokey Mountains (Tennessee)', '$1000', 'beginner', 'Miranda', 'A hike through the smokey mountains'),
+("Miranda's Mountain Hike", '2023-05-27', '1 day', 'Smoky Mountains (Tennessee)', '$1000', 'beginner', 'Miranda', 'A hike through the smoky mountains'),
 ('Rocky Mountain High Adventure', '2023-08-01', '7 days', 'Rocky Mountain National Park (Colorado)', '$3800', 'Advanced', 'John Parker', 'An adventure through the Rocky Mountains'),
 ('Everest Base Camp Trek', '2024-01-01', '7 days', 'Everest Base Camp (Nepal)', '$3500', 'Advanced', 'Tenzing Sherpa','A long quest to Everest'),
 ('Amazon Rainforest Expedition', '2024-03-15', '3 days', 'Amazon Rainforest (Brazil)', '$2000', 'Intermediate', 'Ana Silva', 'An expedition through the Amazon'),
