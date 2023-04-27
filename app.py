@@ -87,9 +87,11 @@ def members():
 def trips(trip_id=None):
     # trips = get_trips()
     trips = database.get_trips()
+    members = database.get_members()
 
     if trip_id:
-        return render_template('trip.html', trip=database.get_trip(trip_id), trip_id=trip_id)
+        attendees = database.get_attendees(int(trip_id))
+        return render_template('trip.html', trip=database.get_trip(trip_id), trip_id=trip_id, attendees=attendees, members=members)
     else:
         return render_template('trips.html', trips=trips)
     
@@ -277,3 +279,17 @@ def check_member(fname, lname, address, email, dob, phone):
         error = " \n".join(msg)
     return error 
 
+# add member trip route
+@app.route('/trips/<trip_id>/attendees/add/', methods=['GET', 'POST'])
+def add_attendee(trip_id=None):
+    if request.method =="POST":
+        member_id = int(html.escape(request.form['member_id']))
+        trip_id = int(trip_id)
+        database.add_member_trip(trip_id, member_id)
+    return redirect(url_for('trips', trip_id=trip_id ))
+
+# remove member trip route
+@app.route('/trips/<trip_id>/attendees/<member_id>/delete')
+def delete_attendee(trip_id=None, member_id=None):
+    database.remove_member_trip(trip_id, member_id)
+    return redirect(url_for('trips', trip_id=trip_id, member_id=member_id))

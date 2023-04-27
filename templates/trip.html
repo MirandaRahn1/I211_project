@@ -9,40 +9,89 @@
 
 <!-- from bootstrap -->
 <table class="table table-striped">
-    <tbody>
+  <tbody>
+    <tr>
+      <th scope="row">Start Date:</th>
+      <td>{{trip['start_date']}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Trip Length:</th>
+      <td>{{trip['length']}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Activity Level:</th>
+      <td>{{trip['level']}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Location:</th>
+      <td>{{trip['location']}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Cost:</th>
+      <td>{{trip['cost']}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Trip Leader:</th>
+      <td>{{trip['leader']}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Description:</th>
+      <td>{{trip['description']}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Buttons for edit and delete trip -->
+<a href="{{ url_for('edit_trip', trip_id=trip_id) }}" class="btn btn-primary" role="button">Edit Trip</a>
+<a href="{{ url_for('delete_trip', trip_id=trip_id) }}" class="btn btn-danger" role="button">Delete Trip</a>
+
+
+{% if attendees %} 
+
+<br>
+<h1 class="mt-5">Attendees</h1>
+  <table class="table table-striped">
       <tr>
-        <th scope="row">Start Date:</th>
-        <td>{{trip['start_date']}}</td>
+        <th>Name</th>
+        <th>DOB</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Phone Number</th>
+        <th></th>
       </tr>
+      {% for member in attendees %}
       <tr>
-        <th scope="row">Trip Length:</th>
-        <td>{{trip['length']}}</td>
+        <td>{{member['fname']}} {{member['lname']}}</td>
+        <td>{{member['dob']}}</td>
+        <td>{{member['email']}}</td>
+        <td>{{member['address']}}</td>
+        <td>{{member['phone']}}</td>
+        <td><a href="{{ url_for('delete_attendee', member_id=member['member_id'], trip_id=trip['trip_id']) }}" class="btn btn-danger" role="button">Delete</a></td>
       </tr>
-      <tr>
-        <th scope="row">Activity Level:</th>
-        <td>{{trip['level']}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Location:</th>
-        <td>{{trip['location']}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Cost:</th>
-        <td>{{trip['cost']}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Trip Leader:</th>
-        <td>{{trip['leader']}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Description:</th>
-        <td>{{trip['description']}}</td>
-      </tr>
-    </tbody>
+    {% endfor %}
   </table>
 
-  <!-- Buttons for edit and delete trip -->
-  <a href="{{ url_for('edit_trip', trip_id=trip_id) }}" class="btn btn-primary" role="button">Edit Trip</a>
-  <a href="{{ url_for('delete_trip', trip_id=trip_id) }}" class="btn btn-danger" role="button">Delete Trip</a>
+{% else %} 
+
+<h4 class="mt-5">No Attendees For This Trip.</h4>
+
+{% endif %} 
+
+<br>
+<form method="POST" action="{{ url_for('add_attendee', trip_id=trip_id, member_id=member_id) }}">
+  <div class="form-group row mb-3">
+    <h5>Add an Attendee</h5>
+    <div class="col-sm-2">
+        <select class="form-select" name="member_id">
+          {% for member in members %}
+          <option value="{{member['member_id']}}">{{member['fname']}} {{member['lname']}}</option>
+          {% endfor %}
+        </select>
+    </div>
+    <div class="col">
+      <button class="btn btn-primary" type="submit" value="Submit">Add Attendee</button>
+    </div>
+  </div>
+</form>
 
 {% endblock %}
